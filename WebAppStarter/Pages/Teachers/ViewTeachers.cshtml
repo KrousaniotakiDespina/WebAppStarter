@@ -1,0 +1,47 @@
+﻿@page
+@model WebAppStarter.Pages.Teachers.ViewTeachersModel
+@{
+    ViewData["Title"] = "View Teachers";
+}
+
+<div>
+
+    <h1>Teachers List</h1>
+
+    <form method="get">
+        <div class="input-group w-50">
+            <input type="text" name="lastname" class="form-control" placeholder="Enter lastname" />
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
+    </form>
+
+    @if (Model.TeachersReadOnlyDTOs.Any())
+    {
+        <table class="table table-dark text-center w-75">
+            <thead>
+                <tr class="table-primary">
+                    <th colspan="3">Coding Factory Teachers</th>
+                </tr>
+                <tr>
+                    <th>Id</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var teacherReadOnlyDTO in Model.TeachersReadOnlyDTOs)
+                {
+                    <tr>
+                        <td>@teacherReadOnlyDTO.Id</td>
+                        <td>@teacherReadOnlyDTO.Firstname</td>
+                        <td>@teacherReadOnlyDTO.Lastname</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No teachers found.</p>
+    }
+</div>
